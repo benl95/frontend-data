@@ -1,6 +1,5 @@
 function data() {
-    return {
-      data: [
+    return [
         {
           "geboortedatum": "13-01-1994",
           "geboorteplaats": "\"52°17'39.2\"\"N 4°57'30.3\"\"E\"",
@@ -9023,5 +9022,4 @@ function data() {
           "gelovenInLevenBuitenPlaneet": "Ja. mensen zoals wij. Of andere wezens die verder ontwikkeld zijn."
         }
       ]
-    }
 }
