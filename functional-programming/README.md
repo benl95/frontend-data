@@ -32,8 +32,8 @@ People that helped:
 * Jonah Meijers and Vincent van Leeuwen (switch case)
 * Laurens Aarnoudse and Robert Spier (Importing JSON data and searching through the data)
 
-[switch - Javascript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch)
-[#10 Javascript Tutorial | switch case](https://www.youtube.com/watch?v=OWQUBfWaxBw&t=94s&ab_channel=Telusko)
+* [switch - Javascript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch)
+* [#10 Javascript Tutorial | switch case](https://www.youtube.com/watch?v=OWQUBfWaxBw&t=94s&ab_channel=Telusko)
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
