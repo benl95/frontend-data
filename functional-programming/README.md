@@ -6,7 +6,7 @@ In this project I'm converting the answers that are given to the question: 'What
 
 ## Which features have I used?
 
-Using a 'hack' given by Robert and Laurens I retrieve the data using a JSON file and store that JSON into a function to return the data. I will be searching through the data using a variable where the 'search action' will be stored. The data will eventually be pushed into an array using a for loop and a push method.
+Right now I'm using a 'hack' given by Robert and Laurens I retrieve the data using a JSON file and store that JSON into a function to return the data. Eventually I will use the map and filter object to search through the data. I will be searching through the data using a variable where the 'search action' will be stored. The data will eventually be pushed into an array using a for loop and a push method.
 
 To convert the values to actual days I'm using a switch case in where the cases are tested and converted. 
 
@@ -22,7 +22,7 @@ Navigate to the desired directory in your terminal:
 
 Once you've reached the desired directory paste the following code in your terminal:
 
-`https://github.com/benl95/functional-programming.git`
+`git clone https://github.com/benl95/functional-programming.git`
 
 You can now open index.html and open the console to check the array in which the survey answers are stored. 
 
