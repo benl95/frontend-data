@@ -39,10 +39,6 @@ People that helped:
 -   [switch - Javascript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch)
 -   [#10 Javascript Tutorial | switch case](https://www.youtube.com/watch?v=OWQUBfWaxBw&t=94s&ab_channel=Telusko)
 
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
-
 # RDW Dataset
 
 ## Research question
@@ -53,6 +49,7 @@ Hoe groen rijdt Nederland op dit moment?
 
 -   Wat is de samenstelling van de Nederlandse wagenpark?
 -   Hoe schoon zijn de brandstof voertuigen in Nederland?
+-   Wat is de meest voorkomende auto in Nederland en is deze groen?
 
 ## Which dataset and variables am I going to use?
 
@@ -72,3 +69,7 @@ Wat is de samenstelling van de Nederlandse wagenpark?
 Hoe schoon zijn de brandstof voertuigen in Nederland?
 
 -   My assumption is that the majority of the vehicles in the Netherlands aren't green.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
