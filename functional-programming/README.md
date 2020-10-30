@@ -43,32 +43,41 @@ People that helped:
 
 ## Research question
 
-Hoe groen rijdt Nederland op dit moment?
+How sustainable is the population of the Netherlands driving?
 
 ### Subquestions
 
--   Wat is de samenstelling van de Nederlandse wagenpark?
--   Hoe schoon zijn de brandstof voertuigen in Nederland?
--   Wat is de meest voorkomende auto in Nederland en is deze groen?
+-   What is the composition of the dutch vehicle fleet?
+-   How sustainable are the fossil fuel vehicles in the Netherlands?
+-   What is the most common car driven in the Netherlands and is this car sustainable?
 
 ## Which dataset and variables am I going to use?
 
-Dataset: [Open Data RDW: Gekentekende_voertuigen_brandstof](https://opendata.rdw.nl/Voertuigen/Open-Data-RDW-Gekentekende_voertuigen_brandstof/8ys7-d773)
-Variables: brandstof omschrijving, emissieklasse
+-   Dataset: [Open Data RDW: Gekentekende_voertuigen_brandstof](https://opendata.rdw.nl/Voertuigen/Open-Data-RDW-Gekentekende_voertuigen_brandstof/8ys7-d773)
+-   Variables: Fuel used, emission class, vehicle type, vehicle brand, trade name vehicle, CO2 emission combined.
 
 ## Assumptions
 
-Hoe groen rijdt Nederland op dit moment?
+How sustainable are the population of the Netherlands driving?
 
 -   My assumption is that 2/3 of the registered vehicles in the Netherlands still run on fossil fuel.
 
-Wat is de samenstelling van de Nederlandse wagenpark?
+What is the compositon of the dutch fleet?
 
--   My assumption is that benzine is the most used fuel among the vehicles in the Neteherlands.
+-   My assumption is that benzine is the most used fuel among the vehicles in the Netherlands
 
-Hoe schoon zijn de brandstof voertuigen in Nederland?
+How sustainable are the fossil fuel vehicles in The Netherlands?
 
--   My assumption is that the majority of the vehicles in the Netherlands aren't green.
+-   My assumption is that the majority of the vehicles in the Netherlands aren't sustainable.
+
+What is the most common car in the Netherlands and is this car sustainable?
+
+-   My assumption is that the most common car in the Netherlands is a Volkswagen Polo. The majority of these cars still run on fossil fuel so they aren't
+    sustainable.
+
+## Sketches
+
+[Sketches](https://github.com/benl95/functional-programming/wiki/6.-RDW-Concept)
 
 ## License
 
