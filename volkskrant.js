@@ -26,12 +26,15 @@ function filterData (dataArray, column) {
 
 // Reduce function to count unique input values
 // Source: https://stackoverflow.com/questions/5667888/counting-the-occurrences-frequency-of-array-elements
+// Source: https://codeburst.io/learn-understand-javascripts-reduce-function-b2b0406efbdc 
+// arr = the array to reduce the function on, acc = accumalates all of the callbacks returned values, val = the current value being processed 
+// If value is returned accumalator count increases
 function countOccurences(arr) {
-    return arr.reduce(function(acc, curr) {
-        if (acc[curr]) {
-            acc[curr] += 1
+    return arr.reduce(function(acc, val) {
+        if (acc[val]) {
+            acc[val] += 1
         } else {
-            acc[curr] = 1
+            acc[val] = 1
         }
         return acc
     }, [])
