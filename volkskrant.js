@@ -29,12 +29,12 @@ function filterData (dataArray, column) {
 // Source: https://codeburst.io/learn-understand-javascripts-reduce-function-b2b0406efbdc 
 // arr = the array to reduce the function on, acc = accumalates all of the callbacks returned values, val = the current value being processed 
 // If value is returned accumalator count increases
-function countOccurences(arr) {
-    return arr.reduce(function(acc, val) {
+function countOccurences (arr) {
+    return arr.reduce((acc, val) => {
         if (acc[val]) {
-            acc[val] += 1
+            acc[val] += 1 
         } else {
-            acc[val] = 1
+            acc[val] = 1 
         }
         return acc
     }, [])
