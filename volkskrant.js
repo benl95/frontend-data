@@ -1,4 +1,4 @@
-// Paste this at end of url to increase limit: ?$limit=2000
+// URL endpoint
 const url = 'https://opendata.rdw.nl/resource/8ys7-d773.json?$limit=100000'
 
 // Retrieve data from url
@@ -8,6 +8,7 @@ getData(url)
         // Get fuel usage of all registered cars
         const fuelUsage = filterData(data, 'brandstof_omschrijving')
         console.log(fuelUsage)
+        // Count occurences input elements for fuel usage
         const fuelOccurences = countOccurences(fuelUsage)
         console.log(fuelOccurences)
     })
