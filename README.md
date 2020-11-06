@@ -5,7 +5,7 @@ RDW data, using D3.js. The visualizations and concepts are to be used by the Vol
 Authority) contains parking data with many different variables that can be put together, made relationships with, and combined to recognize interesting insights
 about the data.
 
-For more information regarding this project consult the wiki: Debriefing](https://github.com/benl95/functional-programming/wiki/1.-Debriefing).
+For more information regarding this project consult the wiki: [Debriefing](https://github.com/benl95/functional-programming/wiki/1.-Debriefing).
 
 ## Installation guide
 
