@@ -1,9 +1,11 @@
 # Frontend-data
 
-This repo is created to process data provided by RDW in commisioned by The Volkskrant. The given assignment is to create interesting data visualizations from
-the RDW data, using D3.js, that The Volkskrant can eventually use for articles. The data that is provided by the RDW (Dutch Vehicle Authority) contains parking
-data with many different variables that can be put together, made relationships with, and combined to recognize interesting insights about this data. More about
-this project can in read in the [Debriefing](https://github.com/benl95/functional-programming/wiki/1.-Debriefing)
+This repo is created to process data provided by RDW commisioned by the Volkskrant. The given assignment is to create interesting data visualizations from the
+RDW data, using D3.js. The visualizations and concepts are to be used by the Volkskrant as preliminary research. The data provided by the RDW (Dutch Vehicle
+Authority) contains parking data with many different variables that can be put together, made relationships with, and combined to recognize interesting insights
+about the data.
+
+For more information regarding this project consult the wiki: Debriefing](https://github.com/benl95/functional-programming/wiki/1.-Debriefing).
 
 ## Installation guide
 
@@ -15,9 +17,9 @@ Once you've reached the desired directory paste the following code in your termi
 
 `git clone https://github.com/benl95/frontend-data.git`
 
-You can now open index.html and open the console to check the array in which the survey answers are stored.
-
 # Concept
+
+For more information regarding the concept consult the conceptual plan: [Extended version](https://github.com/benl95/frontend-data)
 
 ## Research question
 
@@ -36,9 +38,7 @@ How sustainable is the population of the Netherlands driving?
     -   [Registered_vehicles_fuel](https://opendata.rdw.nl/Voertuigen/Open-Data-RDW-Gekentekende_voertuigen_brandstof/8ys7-d773)
     -   [Registered_vehicles](https://opendata.rdw.nl/Voertuigen/Open-Data-RDW-Gekentekende_voertuigen/m9d7-ebf2)
 
--   Variables: License plate number, fuel used, emission class, vehicle type, vehicle brand, trade name vehicle, CO2 emission combined.
-
-For more detailed information about the concept consult the wiki: [Concept](https://github.com/benl95/functional-programming/wiki/6.-RDW-Concept)
+-   Variables: license plate number, fuel used, emission class, vehicle type, vehicle brand, trade name, CO2 emission
 
 ## License
 
