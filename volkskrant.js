@@ -2,34 +2,46 @@
 const licensedVehicles = ['https://opendata.rdw.nl/resource/m9d7-ebf2.json'];
 const licensedVehiclesFuel = ['https://opendata.rdw.nl/resource/8ys7-d773.json'];
 
+const endpoints = ['https://opendata.rdw.nl/resource/m9d7-ebf2.json', 'https://opendata.rdw.nl/resource/8ys7-d773.json'];
+
 // Specific columns
-const columnNames = ['kenteken', 'brandstof_omschrijving', 'co2_uitstoot_gecombineerd', 'emissiecode_omschrijving'];
+const columnNames = ['kenteken', 'brandstof_omschrijving', 'co2_uitstoot_gecombineerd', 'emissiecode_omschrijving', 'voertuigsoort', 'merk', 'handelsbenaming'];
 
 // Retrieve data from url
-getData(licensedVehiclesFuel).then((data) => {
-	console.log('all data: ', data);
-	// Filter desired columns from dataset using filterData function
-	const licensePlateNumber = filterData(data, columnNames[0]);
-	const fuelUsage = filterData(data, columnNames[1]);
-	const co2Emission = filterData(data, columnNames[2]);
-	const emissionCode = filterData(data, columnNames[3]);
+// Thanks to Vincent and Jonah for helping me with refactoring the code to fetch multiple datasets
+getData(endpoints)
+	.then((data) => convertToJSON(data))
+	.then((data) => {
+		console.log('all data: ', data);
+		// Filter desired columns from dataset using filterData function
+		const licensePlateNumber = filterData(data[1], columnNames[0]);
+		const fuelUsage = filterData(data[1], columnNames[1]);
+		const co2Emission = filterData(data[1], columnNames[2]);
+		const emissionCode = filterData(data[1], columnNames[3]);
+		const vehicleType = filterData(data[0], columnNames[4]);
+		const brand = filterData(data[0], columnNames[5]);
+		const tradeName = filterData(data[0], columnNames[6]);
 
-	// Convert strings to integers and remove NaN values from array
-	const parsedCo2Emission = convertToInteger(co2Emission);
-	const parsedEmissionCode = convertToInteger(emissionCode);
-	const convertedCo2Emission = removeNaN(parsedCo2Emission);
-	const convertedEmissionCode = removeNaN(parsedEmissionCode);
+		// Convert strings to integers and remove NaN values from array
+		const parsedCo2Emission = convertToInteger(co2Emission);
+		const parsedEmissionCode = convertToInteger(emissionCode);
+		const convertedCo2Emission = removeNaN(parsedCo2Emission);
+		const convertedEmissionCode = removeNaN(parsedEmissionCode);
 
-	// Merge arrays into one array
-	let carArray = mergeArrays(licensePlateNumber, fuelUsage, convertedCo2Emission, convertedEmissionCode);
-	console.log(carArray);
-});
+		// Merge arrays into one array
+		let carArray = mergeArrays(licensePlateNumber, fuelUsage, convertedCo2Emission, convertedEmissionCode);
+		console.log(carArray);
+	});
 
 // Function to fetch data from url and parse to json
 async function getData(url) {
-	const response = await fetch(url);
-	const data = await response.json();
-	return data;
+	const response = url.map((url) => fetch(url));
+	return Promise.all(response);
+}
+
+function convertToJSON(response) {
+	const url = response.map((url) => url.json());
+	return Promise.all(url).then((result) => result);
 }
 
 // Function to filter data
@@ -38,7 +50,7 @@ function filterData(dataArray, column) {
 }
 
 // Function to merge arrays into one array using map function
-// With help from Jonah and Vincent, thank you!
+// With help from Jonah and Vincent, thank you!'
 function mergeArrays(mainArray, array1, array2, array3) {
 	return mainArray.map((val, idx) => ({
 		id: val,
