@@ -8,16 +8,18 @@ const columnNames = ['kenteken', 'brandstof_omschrijving', 'co2_uitstoot_gecombi
 // Retrieve data from url
 getData(licensedVehiclesFuel).then((data) => {
 	console.log('all data: ', data);
-	// Get license plate numbers of all registered cars
+	// Filter desired columns from dataset using filterData function
 	const licensePlateNumber = filterData(data, columnNames[0]);
-	// Get fuel usage of all registered cars
 	const fuelUsage = filterData(data, columnNames[1]);
-	// Get CO2 emission from all registered cars
 	const co2Emission = filterData(data, columnNames[2]);
-	// Get emission code from all registered cars
 	const emissionCode = filterData(data, columnNames[3]);
-	// Merge arrays
-	let item = mergeArrays(licensePlateNumber, fuelUsage, co2Emission, emissionCode);
+
+	// Convert strings to integers
+	const parsedCo2Emission = convertToInteger(co2Emission);
+	const parsedEmissionCode = convertToInteger(emissionCode);
+
+	// Merge arrays into one array
+	let item = mergeArrays(licensePlateNumber, fuelUsage, parsedCo2Emission, parsedEmissionCode);
 	console.log(item);
 });
 
@@ -33,6 +35,17 @@ function filterData(dataArray, column) {
 	return dataArray.map((result) => result[column]);
 }
 
+// Function to merge arrays into one array using map function
+// With help from Jonah and Vincent, thank you!
+function mergeArrays(mainArray, array1, array2, array3) {
+	return mainArray.map((val, idx) => ({
+		id: val,
+		fuel: array1[idx],
+		co2Emission: array2[idx],
+		emissionCode: array3[idx],
+	}));
+}
+
 // Reduce function to count occurrences of elements in array
 function countOccurrences(arr) {
 	return arr.reduce((acc, val) => {
@@ -45,17 +58,9 @@ function countOccurrences(arr) {
 	}, []);
 }
 
-// Function to merge arrays into one array using map function
-// With help from Jonah and Vincent, thank you!
-function mergeArrays(mainArray, array1, array2, array3) {
-	return mainArray.map((val, idx) => ({
-		id: val,
-		fuel: array1[idx],
-		co2Emission: array2[idx],
-		emissionCode: array3[idx],
-	}));
-}
-
 // Function to convert strings to integers (in progress)
+function convertToInteger(arr) {
+	return arr.map((val) => parseInt(val));
+}
 
 // Function to remove undefined values from array (in progress)
