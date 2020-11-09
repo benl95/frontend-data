@@ -48,6 +48,21 @@ function mergeArrays(mainArray, array1, array2, array3) {
 	}));
 }
 
+// Function to convert strings to integers
+function convertToInteger(arr) {
+	return arr.map((val) => parseInt(val));
+}
+
+// Function to remove NaN values from array
+function removeNaN(arr) {
+	return arr.map((val) => {
+		if (isNaN(val)) {
+			return null;
+		}
+		return val;
+	});
+}
+
 // Reduce function to count occurrences of elements in array
 function countOccurrences(arr) {
 	return arr.reduce((acc, val) => {
@@ -58,19 +73,4 @@ function countOccurrences(arr) {
 		}
 		return acc;
 	}, []);
-}
-
-// Function to convert strings to integers
-function convertToInteger(arr) {
-	return arr.map((val) => parseInt(val));
-}
-
-// Function to remove NaN values from array (in progress)
-function removeNaN(arr) {
-	return arr.map((val) => {
-		if (isNaN(val)) {
-			return null;
-		}
-		return val;
-	});
 }
