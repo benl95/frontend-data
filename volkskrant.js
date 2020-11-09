@@ -14,13 +14,15 @@ getData(licensedVehiclesFuel).then((data) => {
 	const co2Emission = filterData(data, columnNames[2]);
 	const emissionCode = filterData(data, columnNames[3]);
 
-	// Convert strings to integers
+	// Convert strings to integers and remove NaN values from array
 	const parsedCo2Emission = convertToInteger(co2Emission);
 	const parsedEmissionCode = convertToInteger(emissionCode);
+	const convertedCo2Emission = removeNaN(parsedCo2Emission);
+	const convertedEmissionCode = removeNaN(parsedEmissionCode);
 
 	// Merge arrays into one array
-	let item = mergeArrays(licensePlateNumber, fuelUsage, parsedCo2Emission, parsedEmissionCode);
-	console.log(item);
+	let carArray = mergeArrays(licensePlateNumber, fuelUsage, convertedCo2Emission, convertedEmissionCode);
+	console.log(carArray);
 });
 
 // Function to fetch data from url and parse to json
@@ -58,9 +60,17 @@ function countOccurrences(arr) {
 	}, []);
 }
 
-// Function to convert strings to integers (in progress)
+// Function to convert strings to integers
 function convertToInteger(arr) {
 	return arr.map((val) => parseInt(val));
 }
 
-// Function to remove undefined values from array (in progress)
+// Function to remove NaN values from array (in progress)
+function removeNaN(arr) {
+	return arr.map((val) => {
+		if (isNaN(val)) {
+			return null;
+		}
+		return val;
+	});
+}
