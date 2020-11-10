@@ -2,7 +2,7 @@
 const licensedVehicles = ['https://opendata.rdw.nl/resource/m9d7-ebf2.json'];
 const licensedVehiclesFuel = ['https://opendata.rdw.nl/resource/8ys7-d773.json'];
 
-const endpoints = ['https://opendata.rdw.nl/resource/m9d7-ebf2.json', 'https://opendata.rdw.nl/resource/8ys7-d773.json'];
+const endpoints = ['https://opendata.rdw.nl/resource/m9d7-ebf2.json?$limit=100000', 'https://opendata.rdw.nl/resource/8ys7-d773.json?$limit=100000'];
 
 // Specific columns
 const columnNames = ['kenteken', 'brandstof_omschrijving', 'co2_uitstoot_gecombineerd', 'emissiecode_omschrijving', 'voertuigsoort', 'merk', 'handelsbenaming'];
@@ -12,7 +12,12 @@ const columnNames = ['kenteken', 'brandstof_omschrijving', 'co2_uitstoot_gecombi
 getData(endpoints)
 	.then((data) => convertToJSON(data))
 	.then((data) => {
+		// All data from both datasets
 		console.log('all data: ', data);
+
+		// Store dataset 1 in variable
+		const licensedVehicles = data[0];
+
 		// Filter desired columns from dataset using filterData function
 		const licensePlateNumber = filterData(data[1], columnNames[0]);
 		const fuelUsage = filterData(data[1], columnNames[1]);
@@ -31,6 +36,9 @@ getData(endpoints)
 		// Merge arrays into one array
 		let carArray = mergeArrays(licensePlateNumber, fuelUsage, convertedCo2Emission, convertedEmissionCode);
 		console.log(carArray);
+
+		let merged = mergeObjects(licensedVehicles, carArray);
+		console.log(merged);
 	});
 
 // Function to fetch data from url and parse to json
@@ -39,6 +47,7 @@ async function getData(url) {
 	return Promise.all(response);
 }
 
+// Function to  convert data to JSON
 function convertToJSON(response) {
 	const url = response.map((url) => url.json());
 	return Promise.all(url).then((result) => result);
@@ -49,8 +58,38 @@ function filterData(dataArray, column) {
 	return dataArray.map((result) => result[column]);
 }
 
+/* // Merge datasets (in progress)
+function mergeDatasets(a, b) {
+	let licensedVehicles = a;
+	let licensedVehiclesFuel = b;
+
+	return licensedVehiclesFuel.map((entry) => {
+		let fuelItem = licensedVehicles.find((item) => {
+			return entry.kenteken === item.kenteken;
+		});
+
+		entry.voertuigInfo = fuelItem;
+		return entry;
+	});
+} */
+
+function mergeObjects(a, b) {
+	let licensedVehicles = b;
+	let carArray = a;
+
+	console.log(carArray[0], licensedVehicles[0]);
+
+	const result = licensedVehicles.map((licensedVehicle) => {
+		const carInfo = carArray.find((carArray) => licensedVehicle.kenteken === carArray.id);
+
+		licensedVehicle.carInfo = carInfo;
+		return licensedVehicle;
+	});
+	console.log(result);
+}
+
 // Function to merge arrays into one array using map function
-// With help from Jonah and Vincent, thank you!'
+// With help from Jonah and Vincent, thank you!
 function mergeArrays(mainArray, array1, array2, array3) {
 	return mainArray.map((val, idx) => ({
 		id: val,
