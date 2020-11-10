@@ -1,7 +1,4 @@
 // URL endpoint
-const licensedVehicles = ['https://opendata.rdw.nl/resource/m9d7-ebf2.json'];
-const licensedVehiclesFuel = ['https://opendata.rdw.nl/resource/8ys7-d773.json'];
-
 const endpoints = ['https://opendata.rdw.nl/resource/m9d7-ebf2.json?$limit=100000', 'https://opendata.rdw.nl/resource/8ys7-d773.json?$limit=100000'];
 
 // Specific columns
@@ -15,7 +12,6 @@ getData(endpoints)
 		// All data from both datasets
 		console.log('all data: ', data);
 
-		// Store dataset 1 in variable
 		const licensedVehicles = data[0];
 
 		// Filter desired columns from dataset using filterData function
@@ -23,9 +19,6 @@ getData(endpoints)
 		const fuelUsage = filterData(data[1], columnNames[1]);
 		const co2Emission = filterData(data[1], columnNames[2]);
 		const emissionCode = filterData(data[1], columnNames[3]);
-		const vehicleType = filterData(data[0], columnNames[4]);
-		const brand = filterData(data[0], columnNames[5]);
-		const tradeName = filterData(data[0], columnNames[6]);
 
 		// Convert strings to integers and remove NaN values from array
 		const parsedCo2Emission = convertToInteger(co2Emission);
@@ -37,8 +30,7 @@ getData(endpoints)
 		let carArray = mergeArrays(licensePlateNumber, fuelUsage, convertedCo2Emission, convertedEmissionCode);
 		console.log(carArray);
 
-		let merged = mergeObjects(licensedVehicles, carArray);
-		console.log(merged);
+		let merged = merge(carArray, licensedVehicles);
 	});
 
 // Function to fetch data from url and parse to json
@@ -58,34 +50,17 @@ function filterData(dataArray, column) {
 	return dataArray.map((result) => result[column]);
 }
 
-/* // Merge datasets (in progress)
-function mergeDatasets(a, b) {
-	let licensedVehicles = a;
-	let licensedVehiclesFuel = b;
-
-	return licensedVehiclesFuel.map((entry) => {
-		let fuelItem = licensedVehicles.find((item) => {
-			return entry.kenteken === item.kenteken;
-		});
-
-		entry.voertuigInfo = fuelItem;
-		return entry;
-	});
-} */
-
-function mergeObjects(a, b) {
-	let licensedVehicles = b;
+function merge(a, b) {
 	let carArray = a;
+	let licensedVehicles = b;
 
-	console.log(carArray[0], licensedVehicles[0]);
-
-	const result = licensedVehicles.map((licensedVehicle) => {
-		const carInfo = carArray.find((carArray) => licensedVehicle.kenteken === carArray.id);
-
-		licensedVehicle.carInfo = carInfo;
-		return licensedVehicle;
+	const result = carArray.map((carArray, i) => {
+		const carInfo = licensedVehicles.find((carInfo) => carArray.id === carInfo.kenteken);
+		carArray.carInfo = carInfo;
+		console.log(i);
+		return carArray;
 	});
-	console.log(result);
+	console.log(result.filter((x) => x.carInfo));
 }
 
 // Function to merge arrays into one array using map function
