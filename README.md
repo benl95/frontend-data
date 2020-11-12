@@ -19,7 +19,7 @@ Once you've reached the desired directory paste the following code in your termi
 
 # Concept
 
-For more information regarding the concept consult the conceptual plan: [Extended version](https://github.com/benl95/frontend-data)
+For more information regarding the concept consult the conceptual plan: [Extended version](https://github.com/benl95/functional-programming/wiki/6.-RDW-Concept)
 
 ## Research question
 
