@@ -1,0 +1,36 @@
+{
+	"name": "frontend-data",
+	"version": "1.0.0",
+	"description": "data visualization app for RDW data",
+	"main": "index.js",
+	"dependencies": {
+		"csvtojson": "^2.0.10",
+		"d3": "^6.2.0",
+		"main.css": "^2.1.0",
+		"parcel-bundler": "^1.12.4"
+	},
+	"devDependencies": {},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "parcel serve index.html",
+		"build": "parcel build index.html"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/benl95/frontend-data.git"
+	},
+	"keywords": [
+		"data",
+		"rdw",
+		"data",
+		"visualization",
+		"d3",
+		"javascript"
+	],
+	"author": "Ben Langenberg",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/benl95/frontend-data/issues"
+	},
+	"homepage": "https://github.com/benl95/frontend-data#readme"
+}
