@@ -1,45 +1,3 @@
-// Import modules
-import { select, scaleLinear, max, scaleBand, axisLeft, axisBottom } from 'd3';
-import { data } from './fossil-fuel-data.js';
-
-// Import parcel module
-import 'regenerator-runtime/runtime';
-
-// D3 variables
-const d3 = require('d3');
-const svg = d3.select('svg');
-const width = +svg.attr('width');
-const height = +svg.attr('height');
-
-const render = (data) => {
-	const xValue = (d) => d.amount;
-	const yValue = (d) => d.fuel;
-	const margin = { top: 20, right: 20, bottom: 20, left: 100 };
-	const innerWidth = width - margin.left - margin.right;
-	const innerHeight = height - margin.top - margin.bottom;
-
-	const xScale = scaleLinear()
-		.domain([0, max(data, xValue)])
-		.range([0, innerWidth]);
-
-	const yScale = scaleBand().domain(data.map(yValue)).range([0, innerHeight]).padding(0.1);
-
-	const g = svg.append('g').attr('transform', `translate(${margin.left}, ${margin.top})`);
-
-	g.append('g').call(axisLeft(yScale));
-	g.append('g').call(axisBottom(xScale)).attr('transform', `translate(0, ${innerHeight})`);
-
-	g.selectAll('rect')
-		.data(data)
-		.enter()
-		.append('rect')
-		.attr('y', (d) => yScale(yValue(d)))
-		.attr('width', (d) => xScale(xValue(d)))
-		.attr('height', yScale.bandwidth());
-};
-
-render(data);
-
 // URL endpoint
 const endpoints = ['https://opendata.rdw.nl/resource/m9d7-ebf2.json?$limit=100000', 'https://opendata.rdw.nl/resource/8ys7-d773.json?$limit=100000'];
 
@@ -58,16 +16,11 @@ const columnNames = [
 getData(endpoints)
 	.then((data) => convertToJSON(data))
 	.then((data) => {
-		// All data from both datasets
-		// console.log('all data: ', data);
-
-		// Filter desired columns from dataset using filterData function
-		// First dataset
+		// Filter desired columns from datasets using filterData function
 		const licensePlateNumberFirst = filterData(data[0], columnNames[0]);
 		const vehicleType = filterData(data[0], columnNames[4]);
 		const brand = filterData(data[0], columnNames[5]);
 		const tradeName = filterData(data[0], columnNames[6]);
-		// Second dataset
 		const licensePlateNumberSecond = filterData(data[1], columnNames[0]);
 		const fuelUsage = filterData(data[1], columnNames[1]);
 		const co2Emission = filterData(data[1], columnNames[2]);
@@ -81,16 +34,12 @@ getData(endpoints)
 
 		// Merge arrays into one array
 		let carInfo = mergeFirstArray(licensePlateNumberFirst, vehicleType, brand, tradeName);
-		// console.log(carInfo);
 		let fuelInfo = mergeSecondArray(licensePlateNumberSecond, fuelUsage, convertedCo2Emission, convertedEmissionCode);
-		// console.log(fuelInfo);
 
 		// Find matches between datasets based on id's and nest carInfo array into fuelInfo array
-		// const matchedData = mergeDatasets(fuelInfo, carInfo);
-		// console.log(matchedData);
+		const matchedData = mergeDatasets(fuelInfo, carInfo);
+		console.log(matchedData);
 	});
-
-// Functional patterns
 
 // Function to fetch data from url and parse to json
 // Thanks to Vincent and Jonah for helping me with refactoring the code to fetch multiple datasets
