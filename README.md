@@ -40,6 +40,12 @@ How sustainable is the population of the Netherlands driving?
 
 -   Variables: license plate number, fuel used, emission class, vehicle type, vehicle brand, trade name, CO2 emission
 
+# Live preview
+
+https://ben-fa.netlify.app/
+
+<img width="865" alt="Schermafbeelding 2020-11-27 om 16 07 01" src="https://user-images.githubusercontent.com/43675725/100462491-a41fb300-30ca-11eb-82b3-1e54a67d42ba.png">
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
